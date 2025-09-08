@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>O Guardião das Memórias Perdidas</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+
+        .ebook-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .cover-page {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            padding: 80px 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cover-page::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="40" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="40" cy="60" r="1.5" fill="rgba(255,255,255,0.1)"/><circle cx="90" cy="80" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="10" cy="90" r="2" fill="rgba(255,255,255,0.1)"/></svg>') repeat;
+            animation: float 20s linear infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            100% { transform: translateY(-100px); }
+        }
+
+        .title {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            z-index: 1;
+            position: relative;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+            z-index: 1;
+            position: relative;
+        }
+
+        .author {
+            font-size: 1.4rem;
+            font-style: italic;
+            z-index: 1;
+            position: relative;
+        }
+
+        .content {
+            padding: 60px 50px;
+        }
+
+        .chapter {
+            margin-bottom: 50px;
+            page-break-after: always;
+        }
+
+        .chapter-title {
+            font-size: 2rem;
+            color: #667eea;
+            margin-bottom: 30px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+            text-align: center;
+        }
+
+        .chapter-number {
+            font-size: 1rem;
+            color: #95a5a6;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .paragraph {
+            margin-bottom: 20px;
+            text-align: justify;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .paragraph:first-letter {
+            font-size: 3rem;
+            font-weight: bold;
+            float: left;
+            line-height: 1;
+            margin: 5px 8px 0 0;
+            color: #667eea;
+        }
+
+        .quote {
+            font-style: italic;
+            text-align: center;
+            font-size: 1.2rem;
+            color: #7f8c8d;
+            margin: 30px 0;
+            padding: 20px;
+            border-left: 4px solid #667eea;
+            background: #f8f9fa;
+        }
+
+        .page-number {
+            text-align: center;
+            color: #95a5a6;
+            font-size: 0.9rem;
+            margin-top: 40px;
+            padding: 20px 0;
+        }
+
+        .table-of-contents {
+            padding: 40px 50px;
+            background: #f8f9fa;
+        }
+
+        .toc-title {
+            font-size: 2rem;
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .toc-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px dotted #bdc3c7;
+            font-size: 1.1rem;
+        }
+
+        .toc-item:hover {
+            background: rgba(102, 126, 234, 0.1);
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .ebook-container {
+                margin: 10px;
+                border-radius: 5px;
+            }
+            
+            .cover-page {
+                padding: 40px 20px;
+            }
+            
+            .title {
+                font-size: 2rem;
+            }
+            
+            .content {
+                padding: 30px 25px;
+            }
+            
+            .chapter-title {
+                font-size: 1.5rem;
+            }
+            
+            .paragraph {
+                font-size: 1rem;
+            }
+        }
+
+        .back-cover {
+            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+        }
+
+        .back-cover h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        .back-cover p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+    <div class="ebook-container">
+        <!-- Capa -->
+        <div class="cover-page">
+            <h1 class="title">O Guardião das Memórias Perdidas</h1>
+            <p class="subtitle">Uma jornada através dos fragmentos esquecidos do tempo</p>
+            <p class="author">Por Marina Silva</p>
+        </div>
+
+        <!-- Sumário -->
+        <div class="table-of-contents">
+            <h2 class="toc-title">Sumário</h2>
+            <div class="toc-item">
+                <span>Prólogo: O Último Sonho</span>
+                <span>3</span>
+            </div>
+            <div class="toc-item">
+                <span>Capítulo 1: A Biblioteca Silenciosa</span>
+                <span>5</span>
+            </div>
+            <div class="toc-item">
+                <span>Capítulo 2: Fragmentos de Luz</span>
+                <span>12</span>
+            </div>
+            <div class="toc-item">
+                <span>Capítulo 3: O Eco das Vozes</span>
+                <span>18</span>
+            </div>
+            <div class="toc-item">
+                <span>Epílogo: O Amanhecer Eterno</span>
+                <span>24</span>
+            </div>
+        </div>
+
+        <!-- Conteúdo -->
+        <div class="content">
+            <!-- Prólogo -->
+            <div class="chapter">
+                <div class="chapter-number">Prólogo</div>
+                <h2 class="chapter-title">O Último Sonho</h2>
+                
+                <p class="paragraph">Era uma vez um lugar onde as memórias iam morrer. Não um cemitério físico, mas um limbo etéreo onde os fragmentos esquecidos da consciência humana se reuniam em silêncio. Lá, entre névoas douradas e sussurros de vento, caminhava Elias, o último guardião deste reino impossível.</p>
+                
+                <p class="paragraph">Sua missão havia começado há tanto tempo que ele próprio esquecera quando. Talvez tenha sido no momento em que a primeira pessoa esqueceu o nome de alguém amado, ou quando a última testemunha de um evento importante fechou os olhos para sempre. O tempo não tinha significado naquele lugar, apenas a eterna vigília sobre os tesouros perdidos da humanidade.</p>
+                
+                <div class="quote">
+                    "As memórias não morrem verdadeiramente. Elas apenas aguardam o momento certo para retornar ao mundo dos vivos."
+                </div>
+                
+                <p class="paragraph">Naquela manhã - se é que manhãs existiam ali - Elias percebeu algo diferente. Uma perturbação nas camadas da realidade, como ondas em um lago perfeitamente calmo. Alguém estava tentando recuperar algo que havia sido perdido há muito tempo. E pela primeira vez em eons, o guardião sorriu.</p>
+            </div>
+
+            <!-- Capítulo 1 -->
+            <div class="chapter">
+                <div class="chapter-number">Capítulo Um</div>
+                <h2 class="chapter-title">A Biblioteca Silenciosa</h2>
+                
+                <p class="paragraph">Sofia acordou com o gosto de poeira na boca e o eco de vozes familiares sussurrando em seus ouvidos. Há três meses, desde a morte de sua avó, ela vinha tendo os mesmos sonhos: corredores infinitos repletos de livros que se desfaziam ao toque, palavras que dançavam no ar como borboletas luminosas, e sempre, sempre, a sensação de que algo crucial havia sido esquecido.</p>
+                
+                <p class="paragraph">A casa da avó permanecia intocada desde o funeral. Sofia finalmente havia encontrado coragem para visitá-la, carregando apenas uma chave enferrujada e o peso da saudade. O que ela não esperava encontrar era a porta do sótão entreaberta, revelando uma escadaria que definitivamente não existia antes.</p>
+                
+                <p class="paragraph">Com passos hesitantes, ela subiu os degraus de madeira que rangiam sob seus pés como suspiros antigos. No topo, descobriu algo impossível: uma biblioteca que se estendia muito além dos limites físicos da casa. Prateleiras se perdiam na penumbra, repletas de volumes que pareciam pulsar com luz própria.</p>
+                
+                <div class="quote">
+                    "Toda biblioteca é um portal. A questão é saber para onde ela leva."
+                </div>
+                
+                <p class="paragraph">Foi então que ela o viu. Um homem de idade indefinida, vestindo um sobretudo que parecia tecido com a própria escuridão. Seus olhos eram profundos como poços de estrelas, e quando ele sorriu, Sofia sentiu como se conhecesse aquele rosto desde sempre.</p>
+                
+                <p class="paragraph">"Você finalmente chegou", disse ele, sua voz ecoando suavemente entre as estantes. "Eu sou Elias, e esta é a Biblioteca das Memórias Perdidas. Sua avó me pediu para aguardar por você."</p>
+            </div>
+
+            <div class="page-number">— 5 —</div>
+
+            <!-- Capítulo 2 -->
+            <div class="chapter">
+                <div class="chapter-number">Capítulo Dois</div>
+                <h2 class="chapter-title">Fragmentos de Luz</h2>
+                
+                <p class="paragraph">Sofia seguiu Elias através dos corredores labirínticos da biblioteca, observando fascinada como os livros se reorganizavam sozinhos nas prateleiras. Alguns volumes brilhavam intensamente, outros mal conseguiam manter suas páginas unidas, e havia aqueles que pareciam completamente transparentes, como fantasmas de histórias que quase foram esquecidas.</p>
+                
+                <p class="paragraph">"Cada livro aqui representa uma memória que alguém perdeu", explicou Elias, passando os dedos por uma lombada dourada. "Podem ser lembranças pequenas - o sabor de um sorvete na infância - ou grandes - o rosto de um primeiro amor. Todas igualmente preciosas, todas aguardando uma segunda chance."</p>
+                
+                <p class="paragraph">Eles pararam diante de uma seção especial, onde os livros eram todos de couro azul-marinho com detalhes prateados. Sofia sentiu seu coração acelerar ao reconhecer a caligrafia elegante nos lombos: era a letra de sua avó.</p>
+                
+                <div class="quote">
+                    "As memórias de quem amamos nunca realmente nos deixam. Elas apenas mudam de forma."
+                </div>
+                
+                <p class="paragraph">"Sua avó foi uma das guardiãs mais dedicadas que já conheci", disse Elias suavemente. "Ela passou décadas coletando e preservando as memórias que as pessoas pensavam ter perdido para sempre. Mas agora, no final de sua jornada, ela queria que você soubesse a verdade sobre sua família."</p>
+                
+                <p class="paragraph">Com mãos trêmulas, Sofia pegou um dos volumes. No momento em que seus dedos tocaram a capa, visões começaram a inundar sua mente: sua avó jovem, caminhando por essa mesma biblioteca, conversando com pessoas que pareciam feitas de luz e sombra, guardando cuidadosamente pequenos frascos de cristal que continham... memórias líquidas?</p>
+            </div>
+        </div>
+
+        <!-- Contracapa -->
+        <div class="back-cover">
+            <h3>Sobre o Livro</h3>
+            <p>"O Guardião das Memórias Perdidas" é uma jornada tocante através dos labirintos da memória humana, explorando como nossas lembranças moldam nossa identidade e conectam gerações. Uma história sobre perda, descoberta e o poder eterno do amor familiar.</p>
+            
+            <p style="margin-top: 30px; font-style: italic;">
+                "Um conto mágico que nos lembra que nada verdadeiramente importante é jamais esquecido."
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Adiciona interatividade ao sumário
+        document.querySelectorAll('.toc-item').forEach(item => {
+            item.addEventListener('click', function() {
+                const chapterName = this.querySelector('span').textContent;
+                alert(`Navegando para: ${chapterName}`);
+            });
+        });
+
+        // Efeito de hover nos livros (simulado)
+        document.addEventListener('mousemove', function(e) {
+            const sparkles = document.querySelectorAll('.cover-page::before');
+            // Animação sutil baseada no movimento do mouse
+        });
+
+        // Scroll suave
+        document.documentElement.style.scrollBehavior = 'smooth';
+    </script>
+</body>
+</html>
