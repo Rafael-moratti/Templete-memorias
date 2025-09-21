@@ -17,16 +17,37 @@
             color: #2c3e50;
             background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
             min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
         }
 
         .ebook-container {
             max-width: 800px;
+            width: 100%;
             margin: 0 auto;
             background: white;
             box-shadow: 0 20px 40px rgba(0,0,0,0.1);
             border-radius: 10px;
             overflow: hidden;
             position: relative;
+        }
+
+        .cover-containers {
+            width: 100%;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .book-covers {
+            width: 100%;
+            height: auto;
+            display: block;
+            max-width: 100%;
         }
 
         .cover-page {
@@ -218,48 +239,22 @@
           padding-left: 12px;
           margin: 20px 0;
         }
-
-        .cover-containers {
-            width: 100%;
-            max-width: 600px; /* Largura máxima da capa */
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-            border-radius: 8px;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .book-covers {
-            display: block;
-            width: 100%;
-            height: auto;
-        }
-
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-        }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-800 flex flex-col items-center justify-center min-h-screen">
-
-
+<body>
     <div class="ebook-container">
-
+        <!-- Capa - Corrigida para centralizar -->
         <div class="cover-containers">
             <img src="./imagens/capa-guardiao-memorias.png" alt="Capa do E-book O Guardião das Memórias Perdidas" class="book-covers">
         </div>
+        
         <!-- Capa -->
         <div class="cover-page">
             <h1 class="title">O Guardião das Memórias Perdidas</h1>
             <p class="subtitle">Uma jornada através dos fragmentos esquecidos do tempo</p>
             <div class="citation">
               <blockquote>
-                “O Guardião das Memórias Perdidas” apresenta-se como uma narrativa alegórica de caráter fantástico (s.d.).
+                "O Guardião das Memórias Perdidas" apresenta-se como uma narrativa alegórica de caráter fantástico (s.d.).
               </blockquote>
             </div>
         </div>
@@ -327,7 +322,7 @@
                 <p class="paragraph">"Você finalmente chegou", disse ele, sua voz ecoando suavemente entre as estantes. "Eu sou Elias, e esta é a Biblioteca das Memórias Perdidas. Sua avó me pediu para aguardar por você."</p>
             </div>
 
-            <div class="page-number">— 5 —</div>
+            <div class="page-number">-- 5 --</div>
 
             <!-- Capítulo 2 -->
             <div class="chapter">
@@ -353,7 +348,7 @@
         <!-- Contracapa -->
         <div class="back-cover">
             <h3>Sobre o Livro</h3>
-            <p>"O Guardião das Memórias Perdidas" é uma jornada tocante através dos labirintos da memória humana, estruturada em prólogo, capítulos e epílogo. Através de imagens simbólicas — como a biblioteca infinita, o guardião Elias e os livros que representam lembranças — a obra constrói uma reflexão poética sobre memória, identidade e a transmissão de afetos entre gerações, funcionando como metáfora do valor imaterial das experiências humanas</p>
+            <p>"O Guardião das Memórias Perdidas" é uma jornada tocante através dos labirintos da memória humana, estruturada em prólogo, capítulos e epílogo. Através de imagens simbólicas -- como a biblioteca infinita, o guardião Elias e os livros que representam lembranças -- a obra constrói uma reflexão poética sobre memória, identidade e a transmissão de afetos entre gerações, funcionando como metáfora do valor imaterial das experiências humanas</p>
             
             <p style="margin-top: 30px; font-style: italic;">
                 "Um conto mágico que nos lembra que nada verdadeiramente importante é jamais esquecido."
